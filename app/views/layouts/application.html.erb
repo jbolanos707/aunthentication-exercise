@@ -9,6 +9,17 @@
 <body>
 <%= flash[:notice] %>
 <%= flash[:alert] %>
+<nav>
+  <ul>
+    <% if current_user.present? %>
+      <li><%= current_user.email %></li>
+      <li><%= link_to "Log Out", session_path(current_user.id), method: :delete %></li>
+    <% end %>
+
+    <li><%= link_to "Log In", new_session_path %></li>
+    <li><%= link_to "Create a user", new_user_path %></li>
+  </ul>
+</nav>
 <%= yield %>
 
 </body>
